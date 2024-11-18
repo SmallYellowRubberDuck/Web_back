@@ -1,0 +1,26 @@
+{
+    "development": {
+      "username": "Stepan",
+      "password": "/yjdiYUF",
+      "database": "podcast_app_db",
+      "host": "localhost",
+      "dialect": "postgres",
+      "logging": false
+    },
+    "test": {
+      "username": "Stepan",
+      "password": "/yjdiYUF",
+      "database": "podcast_app_db",
+      "host": "localhost",
+      "dialect": "postgres",
+      "logging": false
+    },
+    "production": {
+      "username": "Stepan",
+      "password": "/yjdiYUF",
+      "database": "podcast_app_db",
+      "host": "localhost",
+      "dialect": "postgres",
+      "logging": false
+    }
+  }
