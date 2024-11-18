@@ -3,18 +3,18 @@ const {User} = require('../models/db');
 const bcrypt = require("bcrypt");
 
 async function register(req, res){
-    const {username, email, password} = req.body;
+    const {username: username, email: email, password: password} = req.body;
     if (!username||!email||!password){
         return res.status(400).json({error: "You should fill all fields"})
     }
     if (User != null){
-        const existingEmail = await User.findOne({where:  {email: req.body.email}});
-        if (existingEmail){
-            return res.status(400).json({error: "Email is already taken"});
-        }
         const existingUsername = await User.findOne({where:  {username: req.body.username}});
         if (existingUsername){
-            return res.status(400).json({error: "Username is already taken"});
+            return res.status(427).json({error: "Username is already taken"});
+        }
+        const existingEmail = await User.findOne({where:  {email: req.body.email}});
+        if (existingEmail){
+            return res.status(418).json({error: "Email is already taken"});
         }
     }
     // Хэшируем пароль
