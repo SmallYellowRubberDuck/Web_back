@@ -1,3 +1,5 @@
 const sequelize = require('../config/sequelize.config');
 const User = require('./user');
-module.exports = {sequelize, User};
+const Audio = require('./audio');
+const Video = require('./video');
+module.exports = {sequelize, User, Audio, Video};
