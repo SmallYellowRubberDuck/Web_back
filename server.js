@@ -3,6 +3,7 @@ const cors = require('cors');
 const bodyParser = require('body-parser')
 const sequelize = require('./config/sequelize.config.js');
 const authRoutes = require('./routes/authRoutes.js');
+const filterRoutes = require('./routes/filterRoutes.js');
 const audioRoutes = require('./routes/audioRoutes.js');
 require('dotenv').config();
 const app = express();
@@ -15,7 +16,9 @@ app.use(cors({
 app.use(bodyParser.json());
 
 app.use('/auth', authRoutes);
-app.use('/audio', audioRoutes)
+app.use('/filter', filterRoutes)
+
+app.use('/audio', audioRoutes);
 
 
 sequelize.authenticate()
