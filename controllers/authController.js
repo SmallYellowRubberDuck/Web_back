@@ -20,8 +20,8 @@ async function register(req, res){
     // Хэшируем пароль
     const hashedPassword = await bcrypt.hash(req.body.password, 10);
     const newUser = await User.create({username: username, email: email, password: hashedPassword});
-    const token = jwt.sign({id: newUser.id, username: newUser.username}, process.env.JWT_SECRET, {expiresIn: '1h'});
-    return res.status(201).json({message: 'User registered successfully', token: token});
+    const token = jwt.sign({id: newUser.id, username: newUser.username}, process.env.JWT_SECRET, {expiresIn: '10h'});
+    return res.status(201).json({message: 'User registered successfully', token: token, login: newUser.username});
 }
 async function login(req, res){
     const {email, password} = req.body;
@@ -33,7 +33,7 @@ async function login(req, res){
     if (!isMatch){
         return res.status(400).json({error: 'Invalid credentials'});
     }
-    const token = jwt.sign({id: user.id, username: user.username}, process.env.JWT_SECRET, {expiresIn: '1h'});
-    return res.status(200).json({message: 'Login successful', token:token});
+    const token = jwt.sign({id: user.id, username: user.username}, process.env.JWT_SECRET, {expiresIn: '10h'});
+    return res.status(200).json({message: 'Login successful', token:token, login: user.username});
 }
 module.exports = {register, login};

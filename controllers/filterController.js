@@ -1,4 +1,4 @@
-const { getAudio, getVideo } = reqire('../services/filterService');
+const { getAudio, getVideo } = require('../services/filterService');
 async function handleAudioRequest(req, res) {
     const filters = req.query;
     try {

@@ -14,7 +14,7 @@ app.use(cors({
     allowedHeaders: ['Content-Type'],
 }))
 app.use(bodyParser.json());
-
+app.use('/api', authRoutes);
 app.use('/auth', authRoutes);
 app.use('/filter', filterRoutes)
 
