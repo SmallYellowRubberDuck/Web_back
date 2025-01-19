@@ -5,6 +5,8 @@ const sequelize = require('./config/sequelize.config.js');
 const authRoutes = require('./routes/authRoutes.js');
 const filterRoutes = require('./routes/filterRoutes.js');
 const audioRoutes = require('./routes/audioRoutes.js');
+const libraryRoutes = require('./routes/libraryRoutes.js');
+const commentRoutes = require('./routes/commentRoutes.js');
 require('dotenv').config();
 const app = express();
 
@@ -12,13 +14,15 @@ app.use(cors({
     origin: '*',
     methods: ['GET', 'POST'],
     allowedHeaders: ['Content-Type'],
+    exposedHeaders: ['Content-Disposition'],
 }))
 app.use(bodyParser.json());
-app.use('/api', authRoutes);
-app.use('/auth', authRoutes);
-app.use('/filter', filterRoutes)
-
-app.use('/audio', audioRoutes);
+app.use('/api/uploads', express.static('C:\\podcasts\\audio'));
+app.use('/api/auth', authRoutes);
+app.use('/api/filter', filterRoutes);
+app.use('/api/library', libraryRoutes);
+app.use('/api/audio', audioRoutes);
+app.use('/api/comments', commentRoutes);
 
 
 sequelize.authenticate()
